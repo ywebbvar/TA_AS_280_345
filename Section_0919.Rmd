@@ -1,0 +1,130 @@
+---
+title: "Population, Sample and Sampling Distribution"
+author: "Yenny Webb-Vargas"
+date: "Friday, September 19, 2014"
+output: html_document
+---
+
+This is an example of the population distribution. We work with the data for medical expenditures. We load the data, generate an object called `X` and assign the total medical expenditures to it:
+
+```{r}
+load("nmesWithMscd.rdata")
+
+X = nmes.data$totalexp
+```
+
+Now, to see the distribution of `X`, we make a boxplot:
+```{r}
+boxplot(X)
+```
+
+and a histogram:
+```{r}
+hist(X)
+```
+
+Since the `r length(X)` are my whole population, when I ask for the mean of $X$, I get the population mean:
+```{r}
+(mean_X = mean(X))
+```
+
+
+Distribution of the Sample
+----------------------
+We will sample from our population of medical expenditures with replacement, so one person can appear more than once in our sample. For this, we are imagining that our population is endless.
+
+Create a sample of size 100, and call it `sample1`:
+```{r}
+set.seed(59830)
+
+sample1 <- sample(x = X, size = 100)
+```
+
+Now, look at its distribution:
+```{r}
+boxplot(sample1)
+hist(sample1)
+
+(mean_sample1 <- mean(sample1))
+```
+
+The mean in `sample1` is `r round(mean_sample1,0)`, which is different from the population mean `r round(mean_X,0)`. I rounded to dollars, since pennies don't make much difference when considering $1K$ figures.
+
+Now, let's take a different sample, and call it `sample2`:
+
+```{r}
+sample2 <- sample(x = X, size = 100)
+
+boxplot(sample2)
+hist(sample2)
+
+(mean_sample2 <- mean(sample2))
+```
+
+The mean of the people in `sample2` is different from the one from the people in `sample1`, and different from the population mean.
+
+Also, look at the histograms of the distribution of values within the samples, the distributions all look alike:
+
+```{r, fig.height=7, fig.width=3}
+par(mfrow=c(3,1))
+hist(X)
+hist(sample1)
+hist(sample2)
+```
+Notice the spread of the distribution by looking at the values in the x-axis.
+
+Sampling distribution of the mean
+------------------------
+
+Now, we simulate many samples (1000 of them), and take the mean of each sample. In this code, each sample has 100 people in them:
+
+```{r}
+sample_mean_vector <- rep(NA, 1000)
+
+for(i in 1:1000){
+  current_sample <- sample(X, 100)
+  sample_mean_vector[i] <- mean(current_sample)
+}
+
+hist(sample_mean_vector, main="Histogram of sample_mean_vector, \n sample size 100")
+```
+How is this distribution different? What happend to the outliers? To the tail? Is it becoming more symmetrical?
+
+We now try it with samples with more people. Our sample size is 500. Remember, we are simulating 1000 samples, and each sample has 500 people.
+
+```{r}
+sample_mean_vector <- rep(NA, 1000)
+
+for(i in 1:1000){
+  current_sample <- sample(X, 500)
+  sample_mean_vector[i] <- mean(current_sample)
+}
+
+hist(sample_mean_vector, main="Histogram of sample_mean_vector, \n sample size 500")
+```
+Again, how is this distribution different? What happend to the spread (x-axis)? To the tails? Is it becoming more symmetrical?
+
+Code from Class 2:
+=============
+Here is the code from Module 2 in Class 2. There are some extra characters appearing when you copy it from the slides, so copy the version here and play with it. Change the sample size from 50 to 100, 500, and 1000.
+
+### With size = 50
+```{r}
+set.seed(40202)
+load("nmesWithMscd.rdata")
+trueMean<-mean(nmes.data$totalexp) # calculate true mean
+sampleSize<-50 # set size of sample to take, -----------MODIFY THIS LINE!!!!
+numIncl<-0 # initialize counter of covering intervals
+saveMean<-NULL # initialize vector to store sample means
+for (i in 1:1000){ # repeat 1000 times
+  tmpSamp<-sample(nmes.data$totalexp, sampleSize) 
+  CILow<-mean(tmpSamp) - 2*sqrt(var(tmpSamp)/sampleSize)
+  CIHigh<-mean(tmpSamp) + 2*sqrt(var(tmpSamp)/sampleSize)
+  if (trueMean >= CILow & trueMean <= CIHigh) {
+    numIncl <- numIncl + 1
+  }
+  saveMean<-c(saveMean, mean(tmpSamp))
+}
+numIncl/1000 # calculate fraction of intervals covering truth
+hist(saveMean) # look at distribution of sample means
+```
