@@ -1,3 +1,6 @@
+# Ignore Rdata files
+*.Rdata
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
