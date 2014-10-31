@@ -20,13 +20,13 @@ output: ioslides_presentation
 
 ## Interested in explaining variability
 
-- Interested only in linear associations.
-- Can include variables that we think are associated with the outcome
+- Interested only in associations that modify the mean outcome linearly.
+- Includes variables that we think are associated with the outcome
 - We are interested in the $R^2$ and adjusted $R^2$
 
 ## Interested in prediction
 
-- We want to predict GPA
+- We want to predict the outcome
 - We want all the variables that can help us predict GPA
 - As long as the model predicts well (typically will have a high adjusted $R^2$), we don't worry about assumptions nor on whether or not the coefficients are significant
-- Uses methods like cross-validation to help build good predictive models
+- Uses methods like cross-validation to help build good predictive models that do not overfit 
