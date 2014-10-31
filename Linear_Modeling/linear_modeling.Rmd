@@ -1,0 +1,32 @@
+---
+title: "Linear Modeling"
+author: "Yenny Webb-Vargas"
+date: "Friday, October 31, 2014"
+output: slidy_presentation
+---
+
+## Why are we doing this?
+
+- Interested in the effect of a particular variable (covariate) on the outcome. What is the effect of drinking on GPA?
+- Interesting in explaining the variability that we see in a variable (outcome) using other variables. How much of the variability in GPA can be explained by looking at people's school year?
+- Interested in predicting GPA. Can we predict GPA if we know their age, school they are in, gender, etc.?
+
+## Interested in the effect of a variable
+
+- We want estimates of effects to be unbiased
+- There could be variables that affect both our covariate of interest and the outcome (confounders). We need to control for those confounders by including them in the model (even if their effect is not statistically significant)
+- There could be variables that modify the effect that our covariate of interest has on the outcome. We need to include interactions of those and the covariate of interest if they are statistically significant
+- The effect of the covariate of interest can be non-linear. One can start by fitting it using categories, or using other methods such as splines.
+
+## Interested in explaining variability
+
+- Interested only in linear associations.
+- Can include variables that we think are associated with the outcome
+- We are interested in the $R^2$ and adjusted $R^2$
+
+## Interested in prediction
+
+- We want to predict GPA
+- We want all the variables that can help us predict GPA
+- As long as the model predicts well (typically will have a high adjusted $R^2$), we don't worry about assumptions nor on whether or not the coefficients are significant
+- Uses methods like cross-validation to help build good predictive models
