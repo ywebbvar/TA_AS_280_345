@@ -1,0 +1,30 @@
+---
+title: "Discussion questions for Module5"
+author: "Yenny Webb-Vargas"
+date: "Saturday, November 15, 2014"
+output: html_document
+---
+
+Here are the responses to the questions I got by email. I will not answer emails that are sent after 7:45pm.
+
+# Question 1
+I received the following question:
+
+"For problem 2b I know the standard error formula for log odds. I'm not sure what the variables stand for though, for example is P1= to the B0 value that we calculated and P2= B1 or is P1= odds of living for non-nightblind and P2= odds of living for nightblind?
+
+ Additionally, after you calculate the standard error do you have to use the log function on those numbers or can you use them as is?"
+
+
+The formula for the standard error of the log odds is:
+
+$$ se_{\log odds_1} = \sqrt{\frac{1}{\hat p_1  n_1} + \frac{1}{(1- \hat p_1)n_1}} $$
+
+Here, $\hat p_1$ is the observed proportion of the event in group 1. In out case, it would be the observed probability of dying among one group. Meanwhile, $n_1$ is the number of people in group 1. So, $ \hat p_1 n_1 $ is the observed proportion multiplied by the total number of people. This gives us back the actual count of people that had the event. 
+
+Then, once we have the $se_{\log odds_1}$, we construct our confidence interval for the log odds:
+
+$$ \log odds_1  \pm  2*se_{\log odds_1}$$
+
+And afterwards, we exponentiate the result. Our confidence interval will be:
+
+$$e^{\log odds_1  -  2*se_{\log odds_1}}, e^{\log odds_1  +  2*se_{\log odds_1}}$$
