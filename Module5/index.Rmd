@@ -1,5 +1,5 @@
 ---
-title: "Discussion questions for Module5"
+title: "Discussion questions for Module 5 SEP"
 author: "Yenny Webb-Vargas"
 date: "Saturday, November 15, 2014"
 output: html_document
@@ -17,9 +17,9 @@ I received the following question:
 
 The formula for the standard error of the log odds is:
 
-$$ se_{\log odds_1} = \sqrt{\frac{1}{\hat p_1  n_1} + \frac{1}{(1- \hat p_1)n_1}} $$
+$$se_{\log odds_1} = \sqrt{\frac{1}{\hat p_1  n_1} + \frac{1}{(1- \hat p_1)n_1}}$$
 
-Here, $\hat p_1$ is the observed proportion of the event in group 1. In out case, it would be the observed probability of dying among one group. Meanwhile, $n_1$ is the number of people in group 1. So, $ \hat p_1 n_1 $ is the observed proportion multiplied by the total number of people. This gives us back the actual count of people that had the event. 
+Here, $\hat p_1$ is the observed proportion of the event in group 1. In out case, it would be the observed probability of dying among one group. Meanwhile, $n_1$ is the number of people in group 1. So, $\hat p_1 n_1$ is the observed proportion multiplied by the total number of people. This gives us back the actual count of people that had the event. 
 
 Then, once we have the $se_{\log odds_1}$, we construct our confidence interval for the log odds:
 
